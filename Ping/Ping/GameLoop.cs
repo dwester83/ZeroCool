@@ -28,11 +28,26 @@ namespace Ping {
 
         private void loop() {
 
+            int frames = 0;
+            int updates = 0;
+            long lastTime = Environment.TickCount;
+            
             while (running) {
 
-                Console.WriteLine("running");
-                
+                if (updates < 60) {
+                     update();
+                     updates++;
+                }
 
+
+                render();
+                frames++;
+                if (Environment.TickCount >= lastTime + 1000) {
+                    Console.WriteLine("UPS: " + updates + ", FPS: " + frames);
+                    frames = 0;
+                    updates = 0;
+                    lastTime = Environment.TickCount;
+                }
 
             }
 
