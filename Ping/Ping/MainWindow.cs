@@ -17,5 +17,9 @@ namespace Ping {
         private void mainCanvas_Paint(object sender, PaintEventArgs e) {
 
         }
+
+        private void mainWindow_Load(object sender, EventArgs e) {
+
+        }
     }
 }

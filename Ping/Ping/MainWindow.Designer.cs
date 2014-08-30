@@ -45,6 +45,7 @@
             this.Name = "mainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Ping";
+            this.Load += new System.EventHandler(this.mainWindow_Load);
             this.ResumeLayout(false);
 
         }
