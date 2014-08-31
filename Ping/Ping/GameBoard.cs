@@ -18,7 +18,7 @@ namespace Ping {
         }
 
         public void render(Graphics g) {
-
+           // Console.WriteLine("render");
             g.FillRectangle(new SolidBrush(Color.Black), 100, 100, 25, 25);
 
         }
