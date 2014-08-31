@@ -35,10 +35,6 @@ namespace Ping {
             init();
             
         }
-        // this is for creating a console
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
 
         private void mainWindow_Load(object sender, EventArgs e) {
             AllocConsole();
@@ -46,15 +42,25 @@ namespace Ping {
 
         private void mainWindow_FormClosing(object sender, FormClosingEventArgs e) {
             stop();
-            bufferContext.Dispose();
+            bufferContext.Dispose();//cleans up the bufferContext
         }
-        
-        public void init() {
+
+        /*
+         * this is for creating a console
+         */
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAsAttribute(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
+
+        /// <summary>
+        /// Initalizes the thread
+        /// </summary>
+        private void init() {
             thread = new Thread(new ThreadStart(loop));
             thread.Start(); 
         }
 
-        public void stop() {
+        private void stop() {
             thread.Abort();
         }
 
@@ -63,18 +69,30 @@ namespace Ping {
             int frames = 0;
             int updates = 0;
             long lastTime = Environment.TickCount;
+            long timer = Environment.TickCount;
+            Console.WriteLine("lastTime: " + lastTime + ", timer: " + timer);
+            double ns = 1000 / 60;
+            double delta = 0;
+
 
             while (running) {
 
-                if (updates < 60) {
+                long now = Environment.TickCount;
+
+                delta += (now - lastTime) / ns;
+                lastTime = now;
+
+                while(delta >= 1) {
                     update();
                     updates++;
+                    delta--;
                 }
 
                 render();
                 frames++;
-                if (Environment.TickCount >= lastTime + 1000) {
+                if (Environment.TickCount - timer > 1000) {
                     Console.WriteLine("UPS: " + updates + ", FPS: " + frames);
+                    timer += 1000;
                     frames = 0;
                     updates = 0;
                     lastTime = Environment.TickCount;
@@ -85,10 +103,10 @@ namespace Ping {
         }
 
         private void update() {
-
+            gameBoard.update();
         }
 
-        public void render() {
+        private void render() {
 
 
             bufferGraphics.Graphics.FillRectangle(new SolidBrush(Color.Blue), 0, 0, this.Width, this.Height);
