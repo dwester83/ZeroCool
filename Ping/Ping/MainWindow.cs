@@ -95,7 +95,7 @@ namespace Ping {
                     timer += 1000;
                     frames = 0;
                     updates = 0;
-                    lastTime = Environment.TickCount;
+                    
                 }
 
             }
