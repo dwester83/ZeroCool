@@ -51,7 +51,6 @@ namespace Ping {
         public void init() {
             thread = new Thread(new ThreadStart(loop));
             windowGraphics = mainCanvas.CreateGraphics();
-            this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
             thread.Start();
             
         }
