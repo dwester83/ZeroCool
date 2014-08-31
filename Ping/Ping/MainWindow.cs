@@ -14,14 +14,16 @@ namespace Ping {
     public partial class mainWindow : Form {
 
         private GameLoop gl = new GameLoop();
-
+        private int windowWidth = 1000;
+        private int windowHeight = 500;
         public mainWindow() {
             InitializeComponent();
         }
 
+
         private void mainCanvas_Paint(object sender, PaintEventArgs e) {
             Graphics g = mainCanvas.CreateGraphics();
-            gl.init(g);
+            gl.init(g, windowHeight, windowWidth);
         }
 
         private void mainWindow_Load(object sender, EventArgs e) {

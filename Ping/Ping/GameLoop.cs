@@ -8,17 +8,26 @@ using System.Threading.Tasks;
 
 namespace Ping {
     class GameLoop {
-
+        private int windowWidth;
+        private int windowHeight;
         private bool running = true;
-        private Graphics g;
+        private Graphics windowGraphics;
+        private Graphics bufferGraphics;//used to draw all renders to bufferBitmap 
+        private Bitmap bufferBitmap;//the image that will be drawn to the windowGraphics
         private Thread thread;
+
+        private GameBoard gameBoard = new GameBoard();
 
         public GameLoop() {
             thread = new Thread(new ThreadStart(loop));
         }
 
-        public void init(Graphics g) {
-            this.g = g;
+        public void init(Graphics g, int width, int height) {
+            this.windowGraphics = g;
+            windowWidth = width;
+            windowHeight = height;
+            bufferBitmap = new Bitmap(windowWidth, windowHeight);
+            bufferGraphics = Graphics.FromImage(bufferBitmap);
             thread.Start();
         }
 
@@ -57,8 +66,12 @@ namespace Ping {
 
         }
 
-        private void render() {
+        public void render() {
 
+            gameBoard.render(bufferGraphics);
+
+            windowGraphics.DrawImage(bufferBitmap,0,0);
+            
         }
     }
 
