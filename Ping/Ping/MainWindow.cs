@@ -70,7 +70,7 @@ namespace Ping {
             int updates = 0;
             long lastTime = Environment.TickCount;
             long timer = Environment.TickCount;
-            Console.WriteLine("lastTime: " + lastTime + ", timer: " + timer);
+           // Console.WriteLine("lastTime: " + lastTime + ", timer: " + timer);
             double ns = 1000 / 60;
             double delta = 0;
 

@@ -8,23 +8,31 @@ using System.Drawing;
 namespace Ping {
     class GameBoard {
 
-        int x = 100;
-        int y = 100;
+        private BounceBar top = new BounceBar(1);
+        private BounceBar bottom = new BounceBar(2);
+        private GoalBar player = new GoalBar(1);
+        private GoalBar enemy = new GoalBar(2);
+        private PaddleBar playerPaddle = new PaddleBar(1);
+        private PaddleBar enemyPaddle = new PaddleBar(2);
+
+        private Ball ball = new Ball();
+
         public GameBoard() {
 
         }
 
         public void update() {
-            x += 1;
-            if (x > 1000) {
-                x = 0;
-            }
+
         }
 
         public void render(Graphics g) {
-           // Console.WriteLine("render");
-            g.FillRectangle(new SolidBrush(Color.Black), x, y, 25, 25);
-
+            top.render(g);
+            bottom.render(g);
+            player.render(g);
+            enemy.render(g);
+            ball.render(g);
+            playerPaddle.render(g);
+            enemyPaddle.render(g);
         }
 
     }
