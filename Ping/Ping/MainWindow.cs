@@ -15,24 +15,30 @@ namespace Ping {
 
     public partial class mainWindow : Form {
 
-
         private bool running = true;
-        private Graphics windowGraphics;
         private Thread thread;
+        private BufferedGraphics bufferGraphics;
+        private BufferedGraphicsContext bufferContext;
+
+
+
 
         private GameBoard gameBoard = new GameBoard();
-
         public mainWindow() {
             InitializeComponent();
-
-            init();
         }
 
         private void mainCanvas_Paint(object sender, PaintEventArgs e) {
-                
+            Console.WriteLine("mainCanvas_Paint");
+            bufferContext = BufferedGraphicsManager.Current;
+            bufferGraphics = bufferContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
+            init();
             
         }
-
+        // this is for creating a console
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAsAttribute(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
 
         private void mainWindow_Load(object sender, EventArgs e) {
             AllocConsole();
@@ -40,19 +46,12 @@ namespace Ping {
 
         private void mainWindow_FormClosing(object sender, FormClosingEventArgs e) {
             stop();
+            bufferContext.Dispose();
         }
-                // this is for creating a console
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAsAttribute(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
-
- 
-
+        
         public void init() {
             thread = new Thread(new ThreadStart(loop));
-            windowGraphics = mainCanvas.CreateGraphics();
-            thread.Start();
-            
+            thread.Start(); 
         }
 
         public void stop() {
@@ -60,7 +59,6 @@ namespace Ping {
         }
 
         private void loop() {
-
 
             int frames = 0;
             int updates = 0;
@@ -81,9 +79,10 @@ namespace Ping {
                     updates = 0;
                     lastTime = Environment.TickCount;
                 }
-            }
-        }
 
+            }
+
+        }
 
         private void update() {
 
@@ -91,8 +90,17 @@ namespace Ping {
 
         public void render() {
 
-            gameBoard.render(windowGraphics);
-            
+
+            bufferGraphics.Graphics.FillRectangle(new SolidBrush(Color.Blue), 0, 0, this.Width, this.Height);
+            gameBoard.render(bufferGraphics.Graphics);
+
+
+            bufferGraphics.Render();
+            // Renders the contents of the buffer to the specified drawing surface.
+            bufferGraphics.Render(mainCanvas.CreateGraphics());
+
+
         }
+
     }
 }
