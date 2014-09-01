@@ -23,8 +23,10 @@ namespace Ping {
 
                 double tempAngle = ball.getAngle();
                 if (tempAngle >= Math.Abs(Math.PI / 2)) {
+                    //need to calculate angle from center of paddle
                     tempAngle = 0;
                 } else {
+                    //need to calculate angle from center of paddle
                     tempAngle = 3.14;
                 }
                 ball.setAngle(tempAngle);
