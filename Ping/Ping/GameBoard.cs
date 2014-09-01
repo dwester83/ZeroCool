@@ -20,7 +20,10 @@ namespace Ping {
         public GameBoard() {
 
         }
-
+        public void updatePlayersPaddle(double y) {
+            playerPaddle.updatePaddle(y);
+            enemyPaddle.updatePaddle(y);
+        }
         public void update() {
             ball.update();
             top.update(ball);

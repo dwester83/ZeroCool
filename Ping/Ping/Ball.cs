@@ -11,8 +11,8 @@ namespace Ping {
 
         private Rectangle ball = new Rectangle(200, 200, 25, 25);
         private SolidBrush color = new SolidBrush(Color.RosyBrown);
-        private double speed = 4;
-        private double angle = -2;
+        private double speed = 5;
+        private double angle = 3.14;
         private double x = 200;
         private double y = 200;
 
@@ -36,9 +36,13 @@ namespace Ping {
         public double getY() {
             return y;
         }
+        public void setX(double x) {
+            this.x = x;
+        }
 
         public void update(){
-            Console.WriteLine("ball update");
+            //Console.WriteLine("ball update");
+           // Console.WriteLine("angle: " + angle);
             double nx = speed * Math.Cos(angle);
             double ny = speed * Math.Sin(angle);
             x = x + nx;

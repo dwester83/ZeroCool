@@ -71,7 +71,7 @@ namespace Ping {
             long lastTime = Environment.TickCount;
             long timer = Environment.TickCount;
            // Console.WriteLine("lastTime: " + lastTime + ", timer: " + timer);
-            double ns = 1000 / 60;
+            double ns = 1000 / 30;
             double delta = 0;
 
 
@@ -118,6 +118,10 @@ namespace Ping {
             bufferGraphics.Render(mainCanvas.CreateGraphics());
 
 
+        }
+
+        private void mainCanvas_MouseMove(object sender, MouseEventArgs e) {
+            gameBoard.updatePlayersPaddle(e.Y);
         }
 
     }

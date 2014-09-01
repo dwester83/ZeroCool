@@ -34,6 +34,7 @@
             this.mainCanvas.Size = new System.Drawing.Size(1000, 500);
             this.mainCanvas.TabIndex = 0;
             this.mainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.mainCanvas_Paint);
+            this.mainCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainCanvas_MouseMove);
             // 
             // mainWindow
             // 
