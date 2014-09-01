@@ -20,11 +20,13 @@ namespace Ping {
 
         public void update(Ball ball) {
             if (paddle.IntersectsWith(ball.getRect())) {
-                
-                double tempAngle = ball.getAngle();
-                
-                tempAngle = tempAngle/Math.PI/.5;
 
+                double tempAngle = ball.getAngle();
+                if (tempAngle >= Math.Abs(Math.PI / 2)) {
+                    tempAngle = 0;
+                } else {
+                    tempAngle = 3.14;
+                }
                 ball.setAngle(tempAngle);
             }
         }
