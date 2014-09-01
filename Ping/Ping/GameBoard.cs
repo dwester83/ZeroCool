@@ -22,6 +22,13 @@ namespace Ping {
         }
 
         public void update() {
+            ball.update();
+            top.update(ball);
+            bottom.update(ball);
+            player.update(ball);
+            enemy.update(ball);
+            playerPaddle.update(ball);
+            enemyPaddle.update(ball);
 
         }
 

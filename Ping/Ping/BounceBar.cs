@@ -17,8 +17,12 @@ namespace Ping {
             }
         }
 
-        public void update() {
-
+        public void update(Ball ball) {
+            if (bar.IntersectsWith(ball.getRect())) {
+                double tempAngle = ball.getAngle();
+                tempAngle = -tempAngle;
+                ball.setAngle(tempAngle);
+            }
         }
 
         public void render(Graphics g) {
