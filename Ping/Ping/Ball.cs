@@ -11,7 +11,7 @@ namespace Ping {
 
         private Rectangle ball = new Rectangle(200, 200, 25, 25);
         private SolidBrush color = new SolidBrush(Color.RosyBrown);
-        private double speed = 5;
+        private double speed = 20;
         private double angle = 3.14;
         private double x = 200;
         private double y = 200;
