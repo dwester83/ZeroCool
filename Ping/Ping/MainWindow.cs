@@ -71,7 +71,7 @@ namespace Ping {
             long lastTime = Environment.TickCount;
             long timer = Environment.TickCount;
            // Console.WriteLine("lastTime: " + lastTime + ", timer: " + timer);
-            double ns = 1000 / 30;
+            double ns = 1000 / 60;
             double delta = 0;
 
 
@@ -86,10 +86,11 @@ namespace Ping {
                     update();
                     updates++;
                     delta--;
+                    render();
+                frames++;
                 }
 
-                render();
-                frames++;
+                
                 if (Environment.TickCount - timer > 1000) {
                     Console.WriteLine("UPS: " + updates + ", FPS: " + frames);
                     timer += 1000;
