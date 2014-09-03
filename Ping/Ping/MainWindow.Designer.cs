@@ -35,6 +35,7 @@
             this.mainCanvas.TabIndex = 0;
             this.mainCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.mainCanvas_Paint);
             this.mainCanvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.mainCanvas_MouseMove);
+            this.mainCanvas.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.mainCanvas_PreviewKeyDown);
             // 
             // mainWindow
             // 
@@ -48,6 +49,7 @@
             this.Text = "Ping";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.mainWindow_FormClosing);
             this.Load += new System.EventHandler(this.mainWindow_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.mainWindow_KeyDown);
             this.ResumeLayout(false);
 
         }

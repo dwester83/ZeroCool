@@ -10,20 +10,25 @@ namespace Ping {
 
         private Rectangle paddle;
         private SolidBrush color = new SolidBrush(Color.SeaGreen);
-        public PaddleBar(int player) {
-            if (player == 1) {
+        public bool player {get; set;}
+
+        public PaddleBar(bool player) {
+            if (player) {
                 paddle = new Rectangle(50, 200, 25, 100);
             } else {
                 paddle = new Rectangle(925, 200, 25, 100);
             }
+            this.player = player;
         }
+
         public void updatePaddle(double y) {
-            if (y+ paddle.Height >= 475){
+            if (y + paddle.Height >= 475) {
                 paddle.Y = 475 - paddle.Height - 1;
-            }else if(y <= 25) {
+            } else if (y <= 25) {
                 paddle.Y = 26;
             } else { paddle.Y = (int)y; }
         }
+
         public void update(Ball ball) {
             bounceBall(ball);
         }

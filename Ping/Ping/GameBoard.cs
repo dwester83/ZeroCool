@@ -10,29 +10,40 @@ namespace Ping {
 
         private BounceBar top = new BounceBar(1);
         private BounceBar bottom = new BounceBar(2);
-        private GoalBar player = new GoalBar(1);
-        private GoalBar enemy = new GoalBar(2);
-        private PaddleBar playerPaddle = new PaddleBar(1);
-        private PaddleBar enemyPaddle = new PaddleBar(2);
-
-        private Ball ball = new Ball();
+        private GoalBar player;
+        private GoalBar enemy;
+        private PaddleBar playerPaddle;
+        private PaddleBar enemyPaddle;
+        private Player you;
+        private Player guest;
+        private Ball ball1 = new Ball();
 
         public GameBoard() {
-
+            playerPaddle = new PaddleBar(true);
+            enemyPaddle = new PaddleBar(false);
+            you = new Player("You", playerPaddle);
+            guest = new Player("Guest", enemyPaddle);
+            player = new GoalBar(true, you);
+            enemy = new GoalBar(false, guest);
         }
+
         public void updatePlayersPaddle(double y) {
             playerPaddle.updatePaddle(y);
             enemyPaddle.updatePaddle(y);
         }
-        public void update() {
-            ball.update();
-            top.update(ball);
-            bottom.update(ball);
-            player.update(ball);
-            enemy.update(ball);
-            playerPaddle.update(ball);
-            enemyPaddle.update(ball);
 
+        public void updatePaddleKeyStroke(int key) {
+
+        }
+
+        public void update() {
+            ball1.update();
+            top.update(ball1);
+            bottom.update(ball1);
+            player.update(ball1);
+            enemy.update(ball1);
+            playerPaddle.update(ball1);
+            enemyPaddle.update(ball1);
         }
 
         public void render(Graphics g) {
@@ -40,10 +51,12 @@ namespace Ping {
             bottom.render(g);
             player.render(g);
             enemy.render(g);
-            ball.render(g);
+            ball1.render(g);
             playerPaddle.render(g);
             enemyPaddle.render(g);
         }
+
+
 
     }
 }

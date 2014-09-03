@@ -29,7 +29,6 @@ namespace Ping {
         }
 
         private void mainCanvas_Paint(object sender, PaintEventArgs e) {
-            Console.WriteLine("mainCanvas_Paint");
             bufferContext = BufferedGraphicsManager.Current;
             bufferGraphics = bufferContext.Allocate(this.CreateGraphics(), this.DisplayRectangle);
             init();
@@ -87,9 +86,10 @@ namespace Ping {
                     updates++;
                     delta--;
                     render();
-                frames++;
+                    frames++;
                 }
-
+                   // render();
+                   // frames++;
                 
                 if (Environment.TickCount - timer > 1000) {
                     Console.WriteLine("UPS: " + updates + ", FPS: " + frames);
@@ -125,6 +125,15 @@ namespace Ping {
 
         private void mainCanvas_MouseMove(object sender, MouseEventArgs e) {
             gameBoard.updatePlayersPaddle(e.Y);
+        }
+
+        private void mainCanvas_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) {
+
+        }
+
+        private void mainWindow_KeyDown(object sender, KeyEventArgs e) {
+            //Console.WriteLine("calling method keyDown");
+            //gameBoard.updatePaddleKeyStroke(e.KeyValue);
         }
 
     }
