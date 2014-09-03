@@ -35,6 +35,7 @@ namespace Ping {
             player.player = guest;
             enemy = new GoalBar(false);
             enemy.player = you;
+            ball1.resetBall();
         }
 
         public void updatePlayersPaddle(double y) {

@@ -51,8 +51,7 @@ namespace Ping {
                 madeGoal = false;
                 counter = 0;
                 color = purpleBrush;
-                ball.setX(500);
-                ball.setY(250);
+                ball.resetBall();
             }
 
         }
