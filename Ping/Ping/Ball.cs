@@ -9,7 +9,7 @@ namespace Ping {
 
     class Ball {
 
-        private Rectangle ball = new Rectangle(200, 200, 25, 25);
+        private Rectangle ball = new Rectangle(100, 200, 25, 25);
         private SolidBrush color = new SolidBrush(Color.RosyBrown);
         private double speed = 10;
         private double angle = 3.14;

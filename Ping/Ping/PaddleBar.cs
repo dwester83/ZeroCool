@@ -12,9 +12,9 @@ namespace Ping {
         private SolidBrush color = new SolidBrush(Color.SeaGreen);
         public PaddleBar(int player) {
             if (player == 1) {
-                paddle = new Rectangle(50, 100, 25, 100);
+                paddle = new Rectangle(50, 200, 25, 100);
             } else {
-                paddle = new Rectangle(925, 100, 25, 100);
+                paddle = new Rectangle(925, 200, 25, 100);
             }
         }
         public void updatePaddle(double y) {
@@ -31,10 +31,8 @@ namespace Ping {
         private void bounceBall(Ball ball) {
             if (paddle.IntersectsWith(ball.getRect())) {
                 double newAngle = locationPercentageOnPaddle(ball);
-                if (Math.Abs(ball.getAngle()) >= Math.PI / 2) {//determinds if the ball is going left
-                    ball.setX(paddle.X + paddle.Width);//sets the ball to the paddles edge
+                if (Math.Abs(ball.getAngle()) >= Math.PI / 2) {//determinds if the ball is going left 
                 } else {//determinds if the ball is going right
-                    ball.setX(paddle.X - ball.getRect().Width);//sets the ball to the paddles edge
                     //creates the correct reflection angle for positive or negetive angles
                     if (newAngle > 0) { newAngle = Math.PI - newAngle; 
                     } else { newAngle = -Math.PI - newAngle; }
