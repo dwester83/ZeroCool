@@ -11,9 +11,9 @@ namespace Ping {
         private SolidBrush color = new SolidBrush(Color.Red);
         public BounceBar(int placement) {
             if (placement == 1) {
-                bar = new Rectangle(0,0,1000,25);
+                bar = new Rectangle(0,0,1000,30);
             } else {
-                bar = new Rectangle(0, 475, 1000, 25);
+                bar = new Rectangle(0, 475, 1000, 30);
             }
         }
 
@@ -22,6 +22,10 @@ namespace Ping {
                 double tempAngle = ball.getAngle();
                 tempAngle = -tempAngle;
                 ball.setAngle(tempAngle);
+            }
+            if(bar.Contains(ball.getRect())){
+                ball.resetBall();
+
             }
         }
 

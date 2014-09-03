@@ -56,6 +56,7 @@ namespace Ping {
 
         public void update(){
             if (isReset) {
+                Console.WriteLine("update");
                 if (counter % 60 == 0) {
                     if (time == 0) {
                         x = 500;
@@ -65,14 +66,13 @@ namespace Ping {
                     time--;
                 }
                 counter++;
-
             } else {
                 double nx = speed * Math.Cos(angle);
                 double ny = speed * Math.Sin(angle);
                 x = x + nx;
-                y = y + ny;
-                ball = new Rectangle((int)x, (int)y, ball.Width, ball.Height);
+                y = y + ny;  
             }
+            ball = new Rectangle((int)x, (int)y, ball.Width, ball.Height);
         }
 
         public void render(Graphics g) {
