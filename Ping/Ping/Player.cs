@@ -7,17 +7,19 @@ using System.Threading.Tasks;
 namespace Ping {
     class Player {
         private string name;
-        private PaddleBar paddle;
+        public PaddleBar paddle { get; set;}
         private int _score;
         public int score {
             get { return _score; }
             set { _score = value; }
         }
 
-        public Player(string name, PaddleBar paddle) {
+        public Player(string name) {
             this.name = name;
-            this.paddle = paddle;
         }
 
+        public string toString() {
+            return name + "\n" + score;
+        }
     }
 }

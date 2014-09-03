@@ -23,7 +23,7 @@ namespace Ping {
 
 
 
-        private GameBoard gameBoard = new GameBoard();
+        private GameBoard gameBoard;
         public mainWindow() {
             InitializeComponent();
         }
@@ -55,6 +55,9 @@ namespace Ping {
         /// Initalizes the thread
         /// </summary>
         private void init() {
+            Player you = new Player("You");
+            Player guest = new Player("Guest");
+            gameBoard = new GameBoard(you, guest);
             thread = new Thread(new ThreadStart(loop));
             thread.Start(); 
         }

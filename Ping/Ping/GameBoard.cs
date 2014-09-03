@@ -18,13 +18,23 @@ namespace Ping {
         private Player guest;
         private Ball ball1 = new Ball();
 
-        public GameBoard() {
+        private SolidBrush brush = new SolidBrush(Color.Black);
+        private Font font = new Font("Arial", 20);
+        private RectangleF yourRectangle = new RectangleF(250, 100, 100, 100);
+        private RectangleF guestRectangle = new RectangleF(750, 100, 100, 100);
+
+
+        public GameBoard(Player you, Player guest) {
             playerPaddle = new PaddleBar(true);
             enemyPaddle = new PaddleBar(false);
-            you = new Player("You", playerPaddle);
-            guest = new Player("Guest", enemyPaddle);
-            player = new GoalBar(true, you);
-            enemy = new GoalBar(false, guest);
+            this.you = you;
+            this.you.paddle = playerPaddle;
+            this.guest = guest;
+            this.guest.paddle = enemyPaddle;
+            player = new GoalBar(true);
+            player.player = guest;
+            enemy = new GoalBar(false);
+            enemy.player = you;
         }
 
         public void updatePlayersPaddle(double y) {
@@ -47,6 +57,8 @@ namespace Ping {
         }
 
         public void render(Graphics g) {
+            g.DrawString(you.toString(),font,brush,yourRectangle);
+            g.DrawString(guest.toString(), font, brush, guestRectangle);
             top.render(g);
             bottom.render(g);
             player.render(g);
@@ -54,6 +66,7 @@ namespace Ping {
             ball1.render(g);
             playerPaddle.render(g);
             enemyPaddle.render(g);
+
         }
 
 

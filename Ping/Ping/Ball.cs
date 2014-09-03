@@ -39,7 +39,9 @@ namespace Ping {
         public void setX(double x) {
             this.x = x;
         }
-
+        public void setY(double y) {
+            this.y = y;
+        }
         public void update(){
 
             double nx = speed * Math.Cos(angle);
