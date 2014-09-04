@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,8 @@ namespace Ping {
         private BufferedGraphics bufferGraphics;
         private BufferedGraphicsContext bufferContext;
         private bool windowLoaded = false;
+
+        private HatchBrush brush = new HatchBrush(HatchStyle.BackwardDiagonal, Color.Black, Color.Blue);
 
 
 
@@ -117,7 +120,7 @@ namespace Ping {
 
             
             
-            bufferGraphics.Graphics.FillRectangle(new SolidBrush(Color.LightBlue), 0, 0, this.Width, this.Height);
+            bufferGraphics.Graphics.FillRectangle(brush, 0, 0, this.Width, this.Height);
             gameBoard.render(bufferGraphics.Graphics);
 
 

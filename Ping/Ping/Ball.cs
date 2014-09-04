@@ -10,8 +10,8 @@ namespace Ping {
     class Ball {
 
         private Rectangle ball = new Rectangle(100, 200, 10, 10);
-        private SolidBrush color = new SolidBrush(Color.MediumPurple);
-        private RectangleF rect = new RectangleF(450, 200, 100, 100);
+        private SolidBrush color = new SolidBrush(Color.DarkBlue);
+        private RectangleF rect = new RectangleF(500, 200, 100, 100);
         private Font font = new Font("Arial", 50);
         private double speed = 5;
         private double angle = 3.14;
@@ -65,8 +65,8 @@ namespace Ping {
                 //Console.WriteLine("update");
                 if (counter % 60 == 0) {
                     if (time == 0) {
-                        x = 500;
-                        y = 250;
+                        x = 550;
+                        y = 300;
                         isReset = false;
                     }
                     time--;

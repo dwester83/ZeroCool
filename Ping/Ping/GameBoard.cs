@@ -22,6 +22,8 @@ namespace Ping {
         private Font font = new Font("Arial", 20);
         private RectangleF yourRectangle = new RectangleF(250, 100, 100, 100);
         private RectangleF guestRectangle = new RectangleF(750, 100, 100, 100);
+        private Rectangle gameBackground = new Rectangle(50, 65, 1000, 470);
+        private SolidBrush backgroundBrush = new SolidBrush(Color.White);
 
 
         public GameBoard(Player you, Player guest) {
@@ -58,6 +60,7 @@ namespace Ping {
         }
 
         public void render(Graphics g) {
+            g.FillRectangle(backgroundBrush, gameBackground);
             g.DrawString(you.toString(),font,brush,yourRectangle);
             g.DrawString(guest.toString(), font, brush, guestRectangle);
             top.render(g);

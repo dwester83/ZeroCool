@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,10 @@ namespace Ping {
         private SolidBrush blueBrush = new SolidBrush(Color.Blue);
         private SolidBrush purpleBrush = new SolidBrush(Color.Green);
         private SolidBrush color = new SolidBrush(Color.Green);
+        private LinearGradientBrush linearGradientA;
+        private int gradientHeight = 1;
+        private int count = 1;
+        private Rectangle gameBackground = new Rectangle(50, 65, 1000, 470);
         private int counter = 0;
         private bool madeGoal;
         public bool _isLeftGoal;
@@ -35,6 +40,7 @@ namespace Ping {
 
         public GoalBar(bool isLeftGoal) {
             this.isLeftGoal = isLeftGoal;
+            linearGradientA = new LinearGradientBrush(gameBackground, Color.Gold, Color.Black, LinearGradientMode.Vertical);
         }
 
         public void update(Ball ball) {
@@ -43,6 +49,12 @@ namespace Ping {
                 madeGoal = true;
                 ball.resetBall();
             }
+            if (count % 1 == 0) {
+                linearGradientA = new LinearGradientBrush(gameBackground, Color.Gold, Color.Black, gradientHeight, true);
+                gradientHeight += 2;
+                if (gradientHeight == 361) { gradientHeight = 0; }
+            }
+            count++;
 
             if (madeGoal) {
                 if (counter % 2 == 0) { color = goldBrush;} else{ color = blueBrush;}
@@ -59,7 +71,11 @@ namespace Ping {
         }
 
         public void render(Graphics g) {
-            g.FillRectangle(color, goal);
+            if (madeGoal) {
+                g.FillRectangle(color, goal);
+            } else {
+                g.FillRectangle(linearGradientA, goal);
+            }
         }
     }
 }
