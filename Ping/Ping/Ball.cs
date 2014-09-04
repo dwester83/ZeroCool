@@ -13,7 +13,7 @@ namespace Ping {
         private SolidBrush color = new SolidBrush(Color.DarkBlue);
         private RectangleF rect = new RectangleF(500, 200, 100, 100);
         private Font font = new Font("Arial", 50);
-        private double speed = 5;
+        private double speed = 10;
         private double angle = 3.14;
         public double x = 200;
         private double y = 200;

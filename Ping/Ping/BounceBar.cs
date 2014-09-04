@@ -11,11 +11,13 @@ namespace Ping {
         private Rectangle bar;
         private Rectangle partialBar;
         private LinearGradientBrush linearGradientA;
+        private int placement;
         private int gradientHeight = 1;
         private int count = 1;
         private SolidBrush color = new SolidBrush(Color.Red);
         private Rectangle gameBackground = new Rectangle(50, 65, 1000, 470);
         public BounceBar(int placement) {
+            this.placement = placement;
             if (placement == 1) {
                 bar = new Rectangle(50,65,1000,15);
                 partialBar = new Rectangle(50,65,1000,gradientHeight);
@@ -35,10 +37,10 @@ namespace Ping {
             }
             count++;
             if (bar.IntersectsWith(ball.getRect())) {
-                if(bar.Contains(ball.getRect())){
-                ball.resetBall();
-                }
-
+                //if(bar.Contains(ball.getRect())){
+                //ball.resetBall();
+                //}
+                if (placement == 1) { ball.setY(bar.Y + bar.Height); } else { ball.setY(bar.Y - ball.getRect().Height);}
                 double tempAngle = ball.getAngle();
                 tempAngle = -tempAngle;
                 ball.setAngle(tempAngle);

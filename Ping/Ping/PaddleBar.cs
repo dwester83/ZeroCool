@@ -14,9 +14,9 @@ namespace Ping {
 
         public PaddleBar(bool player) {
             if (player) {
-                paddle = new Rectangle(124, 200, 2, 100);
+                paddle = new Rectangle(124, 200, 11, 100);
             } else {
-                paddle = new Rectangle(976, 200, 2, 100);
+                paddle = new Rectangle(976, 200, 11, 100);
             }
             this.player = player;
         }
@@ -38,10 +38,11 @@ namespace Ping {
                 double newAngle = locationPercentageOnPaddle(ball);
                 double locationOnPaddle = paddlePercentage(ball);
                 if (Math.Abs(ball.getAngle()) >= Math.PI / 2) {//determinds if the ball is going left
-                    if (locationOnPaddle < 1.02 && locationOnPaddle > -.02) { ball.setX(paddle.X + paddle.Width+1); }
+                    if (locationOnPaddle < 1.03 && locationOnPaddle > -.03) { ball.setX(paddle.X + paddle.Width+1); }
                 } else {//determinds if the ball is going right
-                    if (locationOnPaddle < 1.02 && locationOnPaddle > -.02) { ball.setX(paddle.X - ball.getRect().Width-1); }
+                    if (locationOnPaddle < 1.03 && locationOnPaddle > -.03) { ball.setX(paddle.X - ball.getRect().Width-1); }
                     //creates the correct reflection angle for positive or negetive angles
+                    //there is an error when the ball hits the top or bottom of paddle at a high angle!!!!!
                     if (newAngle > 0) { newAngle = Math.PI - newAngle; 
                     } else { newAngle = -Math.PI - newAngle; }
                 }
@@ -50,17 +51,18 @@ namespace Ping {
         }
 
         private double locationPercentageOnPaddle(Ball ball){
-            double percentage = paddlePercentage(ball);
-            if (percentage >= .55) {
-                if (percentage > .90) { percentage = .90; } //makes sure the edge case of the paddle still works fine
-                percentage = .45 - (1.00 - percentage);
-                percentage /= .45;
-                return Math.PI/2 * percentage;
-            }else if(percentage <= .45){
-                if (percentage < .10) { percentage = .10; } //makes sure the edge case of the paddle still works fine
-                percentage = .45 - percentage;
-                percentage /= .45;
-                return -Math.PI/2 * percentage;
+            double percentageWholePaddle = paddlePercentage(ball);
+            double percentageHalfPaddle;
+            if (percentageWholePaddle >= .55) {
+                if (percentageWholePaddle > .90) { percentageWholePaddle = .90; } //makes sure the edge case of the paddle still works fine
+                percentageHalfPaddle = .45 - (1.00 - percentageWholePaddle);
+                percentageHalfPaddle /= .45;
+                return Math.PI / 2 * percentageHalfPaddle;
+            } else if (percentageWholePaddle <= .45) {
+                if (percentageWholePaddle < .10) { percentageWholePaddle = .10; } //makes sure the edge case of the paddle still works fine
+                percentageHalfPaddle = .45 - percentageWholePaddle;
+                percentageHalfPaddle /= .45;
+                return -Math.PI / 2 * percentageHalfPaddle;
             } else {
                 return 0;
             }
