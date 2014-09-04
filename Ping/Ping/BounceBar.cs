@@ -11,22 +11,24 @@ namespace Ping {
         private SolidBrush color = new SolidBrush(Color.Red);
         public BounceBar(int placement) {
             if (placement == 1) {
-                bar = new Rectangle(0,0,1000,30);
+                bar = new Rectangle(50,50,1000,30);
             } else {
-                bar = new Rectangle(0, 475, 1000, 30);
+                bar = new Rectangle(50, 520, 1000, 30);
             }
         }
 
         public void update(Ball ball) {
             if (bar.IntersectsWith(ball.getRect())) {
+                if(bar.Contains(ball.getRect())){
+                ball.resetBall();
+                }
+
                 double tempAngle = ball.getAngle();
                 tempAngle = -tempAngle;
                 ball.setAngle(tempAngle);
-            }
-            if(bar.Contains(ball.getRect())){
-                ball.resetBall();
 
             }
+
         }
 
         public void render(Graphics g) {

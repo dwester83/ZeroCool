@@ -19,6 +19,7 @@ namespace Ping {
         private Thread thread;
         private BufferedGraphics bufferGraphics;
         private BufferedGraphicsContext bufferContext;
+        private bool windowLoaded = false;
 
 
 
@@ -59,7 +60,8 @@ namespace Ping {
             Player guest = new Player("Guest");
             gameBoard = new GameBoard(you, guest);
             thread = new Thread(new ThreadStart(loop));
-            thread.Start(); 
+            windowLoaded = true;
+            thread.Start();
         }
 
         private void stop() {
@@ -88,11 +90,11 @@ namespace Ping {
                     update();
                     updates++;
                     delta--;
-                    render();
-                    frames++;
-                }
                    // render();
                    // frames++;
+                }
+                    render();
+                    frames++;
                 
                 if (Environment.TickCount - timer > 1000) {
                     Console.WriteLine("UPS: " + updates + ", FPS: " + frames);
@@ -127,7 +129,7 @@ namespace Ping {
         }
 
         private void mainCanvas_MouseMove(object sender, MouseEventArgs e) {
-            gameBoard.updatePlayersPaddle(e.Y);
+            if (windowLoaded) {gameBoard.updatePlayersPaddle(e.Y);}
         }
 
         private void mainCanvas_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) {

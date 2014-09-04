@@ -13,11 +13,11 @@ namespace Ping {
         private SolidBrush color = new SolidBrush(Color.RosyBrown);
         private RectangleF rect = new RectangleF(450, 200, 100, 100);
         private Font font = new Font("Arial", 50);
-        private double speed = 10;
+        private double speed = 5;
         private double angle = 3.14;
         public double x = 200;
         private double y = 200;
-        private int counter = 0;
+        private int counter = 1;
         private int time = 3;
         private bool isReset = false;
 
@@ -51,12 +51,18 @@ namespace Ping {
         public void resetBall() {
             time = 3;
             isReset = true;
+            angle = Math.PI - angle;
+            double ny = speed * Math.Sin(angle);
+            x = 500;
+            y = 250;
+            ball = new Rectangle((int)x, (int)y, ball.Width, ball.Height);
+
 
         }
 
         public void update(){
             if (isReset) {
-                Console.WriteLine("update");
+                //Console.WriteLine("update");
                 if (counter % 60 == 0) {
                     if (time == 0) {
                         x = 500;
@@ -65,14 +71,16 @@ namespace Ping {
                     }
                     time--;
                 }
+
                 counter++;
             } else {
                 double nx = speed * Math.Cos(angle);
                 double ny = speed * Math.Sin(angle);
                 x = x + nx;
-                y = y + ny;  
+                y = y + ny;
+                ball = new Rectangle((int)x, (int)y, ball.Width, ball.Height);
             }
-            ball = new Rectangle((int)x, (int)y, ball.Width, ball.Height);
+            
         }
 
         public void render(Graphics g) {

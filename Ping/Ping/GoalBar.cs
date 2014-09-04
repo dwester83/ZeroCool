@@ -23,9 +23,9 @@ namespace Ping {
             }
             protected set{
                 if (value) {
-                    goal = new Rectangle(0,25,25,450);
+                    goal = new Rectangle(50,80,25,440);
                 } else {
-                    goal = new Rectangle(975, 25, 25, 450);
+                    goal = new Rectangle(1025, 80, 25, 440);
                 }
                 _isLeftGoal = value;
             }
@@ -41,17 +41,19 @@ namespace Ping {
             if (goal.IntersectsWith(ball.getRect()) && !madeGoal) {
                 ++player.score;
                 madeGoal = true;
+                ball.resetBall();
             }
+
             if (madeGoal) {
                 if (counter % 2 == 0) { color = goldBrush;} else{ color = blueBrush;}
                 counter++;
+            }
 
-            } 
             if (counter == 10) {
                 madeGoal = false;
                 counter = 0;
                 color = purpleBrush;
-                ball.resetBall();
+                
             }
 
         }

@@ -14,18 +14,18 @@ namespace Ping {
 
         public PaddleBar(bool player) {
             if (player) {
-                paddle = new Rectangle(50, 200, 25, 100);
+                paddle = new Rectangle(125, 200, 25, 100);
             } else {
-                paddle = new Rectangle(925, 200, 25, 100);
+                paddle = new Rectangle(950, 200, 25, 100);
             }
             this.player = player;
         }
 
         public void updatePaddle(double y) {
-            if (y + paddle.Height >= 475) {
-                paddle.Y = 475 - paddle.Height - 1;
-            } else if (y <= 25) {
-                paddle.Y = 26;
+            if (y + paddle.Height >= 520) {
+                paddle.Y = 520 - paddle.Height - 1;
+            } else if (y <= 80) {
+                paddle.Y = 81;
             } else { paddle.Y = (int)y; }
         }
 
@@ -36,8 +36,11 @@ namespace Ping {
         private void bounceBall(Ball ball) {
             if (paddle.IntersectsWith(ball.getRect())) {
                 double newAngle = locationPercentageOnPaddle(ball);
-                if (Math.Abs(ball.getAngle()) >= Math.PI / 2) {//determinds if the ball is going left 
+                double locationOnPaddle = paddlePercentage(ball);
+                if (Math.Abs(ball.getAngle()) >= Math.PI / 2) {//determinds if the ball is going left
+                    if (locationOnPaddle < 1.02 && locationOnPaddle > -.02) { ball.setX(paddle.X + paddle.Width+1); }
                 } else {//determinds if the ball is going right
+                    if (locationOnPaddle < 1.02 && locationOnPaddle > -.02) { ball.setX(paddle.X - ball.getRect().Width-1); }
                     //creates the correct reflection angle for positive or negetive angles
                     if (newAngle > 0) { newAngle = Math.PI - newAngle; 
                     } else { newAngle = -Math.PI - newAngle; }
