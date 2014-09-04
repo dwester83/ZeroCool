@@ -117,7 +117,7 @@ namespace Ping {
 
             
             
-            bufferGraphics.Graphics.FillRectangle(new SolidBrush(Color.Blue), 0, 0, this.Width, this.Height);
+            bufferGraphics.Graphics.FillRectangle(new SolidBrush(Color.LightBlue), 0, 0, this.Width, this.Height);
             gameBoard.render(bufferGraphics.Graphics);
 
 

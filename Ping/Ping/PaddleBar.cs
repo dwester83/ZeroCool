@@ -14,9 +14,9 @@ namespace Ping {
 
         public PaddleBar(bool player) {
             if (player) {
-                paddle = new Rectangle(125, 200, 25, 100);
+                paddle = new Rectangle(124, 200, 2, 100);
             } else {
-                paddle = new Rectangle(950, 200, 25, 100);
+                paddle = new Rectangle(976, 200, 2, 100);
             }
             this.player = player;
         }

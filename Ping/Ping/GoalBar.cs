@@ -12,8 +12,8 @@ namespace Ping {
         private Rectangle goal;
         private SolidBrush goldBrush = new SolidBrush(Color.Gold);
         private SolidBrush blueBrush = new SolidBrush(Color.Blue);
-        private SolidBrush purpleBrush = new SolidBrush(Color.Purple);
-        private SolidBrush color = new SolidBrush(Color.Purple);
+        private SolidBrush purpleBrush = new SolidBrush(Color.Green);
+        private SolidBrush color = new SolidBrush(Color.Green);
         private int counter = 0;
         private bool madeGoal;
         public bool _isLeftGoal;
@@ -23,9 +23,9 @@ namespace Ping {
             }
             protected set{
                 if (value) {
-                    goal = new Rectangle(50,80,25,440);
+                    goal = new Rectangle(50,80,15,440);
                 } else {
-                    goal = new Rectangle(1025, 80, 25, 440);
+                    goal = new Rectangle(1035, 80, 15, 440);
                 }
                 _isLeftGoal = value;
             }
