@@ -21,8 +21,7 @@ namespace Ping {
         private BufferedGraphics bufferGraphics;
         private BufferedGraphicsContext bufferContext;
         private bool windowLoaded = false;
-
-        private HatchBrush brush = new HatchBrush(HatchStyle.BackwardDiagonal, Color.Black, Color.Blue);
+        private HatchBrush backgroundBrush = new HatchBrush(HatchStyle.SolidDiamond, Color.Black, Color.Blue);
 
 
 
@@ -120,7 +119,7 @@ namespace Ping {
 
             
             
-            bufferGraphics.Graphics.FillRectangle(brush, 0, 0, this.Width, this.Height);
+            bufferGraphics.Graphics.FillRectangle(backgroundBrush, 0, 0, this.Width, this.Height);
             gameBoard.render(bufferGraphics.Graphics);
 
 
